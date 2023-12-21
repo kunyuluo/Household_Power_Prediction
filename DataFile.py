@@ -29,9 +29,12 @@ fill_missing(data.values)
 
 # add a column for the remainder of sub metering
 values = data.values
-data['sub_metering_4'] = (values[:, 0] * 1000 / 60) - (values[:, 4] + values[:, 5] + values[:, 6])
+data['Sub_metering_4'] = (values[:, 0] * 1000 / 60) - (values[:, 4] + values[:, 5] + values[:, 6])
+
+data = data.resample('D').sum()
 
 # save updated dataset
-data.to_csv('household_power_consumption.csv')
+# data.to_csv('household_power_consumption.csv')
+data.to_csv('household_power_consumption_day.csv')
 
 # print(data)
